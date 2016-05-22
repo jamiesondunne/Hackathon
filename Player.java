@@ -1,9 +1,11 @@
 package hackathonproject;
 
+import java.awt.event.KeyListener;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.ObjectInputStream;
 import java.io.Serializable;
+
 
 /**
  *
@@ -12,7 +14,9 @@ import java.io.Serializable;
 public class Player implements Serializable{
     private int x;
     private int y;
-    private int z;
+    private int tileZ;
+    private int tileX;
+    private int tileY;
     PaintColor equipped;
     Level level;
     public Player()
@@ -58,9 +62,17 @@ public class Player implements Serializable{
     {
         this.y = y;
     }
-    public void setZ(int z)
+    public void setTileX(int tileX)
     {
-        this.z = z;
+        this.tileX = tileX;
+    }
+    public void setTileY(int tileY)
+    {
+        this.tileY = tileY;
+    }
+    public void setTileZ(int tileZ)
+    {
+        this.tileZ = tileZ;
     }
     public int getX()
     {
@@ -70,10 +82,33 @@ public class Player implements Serializable{
     {
         return y;
     }
-    public int getZ(int z)
+    public int getTileX()
     {
-        return z;
+        return tileX;
+    }
+    public int getTileY()
+    {
+        return tileY;
+    }
+    public int getTileZ()
+    {
+        return tileZ;
     }
     
-    
+    public void moveLeft()
+    {
+        setX(x - 8);
+    }
+    public void moveRight()
+    {
+        setX(x + 8);
+    }
+    public void moveForward()
+    {
+        setTileZ(tileZ + 1);
+    }
+    public void moveBackward()
+    {
+        setTileZ(tileZ - 1);
+    }
 }

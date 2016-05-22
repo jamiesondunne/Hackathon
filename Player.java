@@ -1,4 +1,4 @@
-package hackathonproject;
+package sp3ctrum;
 
 import java.awt.event.KeyListener;
 import java.io.File;
@@ -17,8 +17,10 @@ public class Player implements Serializable{
     private int tileZ;
     private int tileX;
     private int tileY;
-    PaintColor equipped;
-    Level level;
+    private PaintColor equipped;
+    private Level level;
+    private int levelNumber = 1;
+    public boolean collision;
     public Player()
     {
         try
@@ -78,7 +80,7 @@ public class Player implements Serializable{
     {
         return x;
     }
-    public int getY(int y)
+    public int getY()
     {
         return y;
     }
@@ -97,18 +99,34 @@ public class Player implements Serializable{
     
     public void moveLeft()
     {
-        setX(x - 8);
+        x-=8;
     }
     public void moveRight()
     {
-        setX(x + 8);
+        x+=8;
     }
     public void moveForward()
     {
-        setTileZ(tileZ + 1);
+       tileZ+=1;
     }
     public void moveBackward()
     {
-        setTileZ(tileZ - 1);
+        tileZ-=1;
+    }
+    public void jump() {
+        GUI.jumping = true;
+        try {
+            for (int i = 0; i < 8; i++) {
+                y+=GUI.speed;
+                Thread.sleep(10);
+            }
+            for (int i = 0; i < 8; i++) {
+                y-=GUI.speed;
+                Thread.sleep(10);
+            }
+        } catch (InterruptedException e) {
+            // e.printStackTrace();
+        }
+        GUI.jumping = false;
     }
 }

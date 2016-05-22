@@ -29,6 +29,24 @@ public class Level implements Serializable {
         startColor = color;
     }
     
+    public void setRedPosition(int x, int y, int z) {
+        redX = x;
+        redY = y;
+        redZ = z;
+    }
+    
+    public void setBluePosition(int x, int y, int z) {
+        blueX = x;
+        blueY = y;
+        blueZ = z;
+    }
+    
+    public void setYellowPosition(int x, int y, int z) {
+        yellowX = x;
+        yellowY = y;
+        yellowZ = z;
+    }
+    
     public void addTile(Tile tile) {
         tiles.add(tile);
     }
@@ -37,12 +55,13 @@ public class Level implements Serializable {
         tiles.remove(tile);
     }
     
-    public boolean tileIsAt(Coordinates coords) {
-        return getTile(coords) != null;
+    public boolean tileIsAt(int x, int y, int z) {
+        return getTile(x, y, z) != null;
     }
-    public Tile getTile(Coordinates coords) {
+    
+    public Tile getTile(int x, int y, int z) {
         for (Tile tile : tiles) {
-            if (tile.getCoords().equals(coords)) {
+            if (tile.getX() == x && tile.getY() == y && tile.getZ() == z) {
                 return tile;
             }
         }
@@ -53,7 +72,20 @@ public class Level implements Serializable {
         return startColor;
     }
     
+    public int getWidth() {
+        return width;
+    }
+    
+    public int getHeight() {
+        return height;
+    }
+    
+    public int getDepth() {
+        return depth;
+    }
+    
     private int width, height, depth;
     private PaintColor startColor;
     private final ArrayList<Tile> tiles;
+    private int redX, redY, redZ, yellowX, yellowY, yellowZ, blueX, blueY, blueZ;
 }
